@@ -1,0 +1,33 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mongo-container": "docker run -it -d --name=dev_auth -p 27017:27017 mongo:latest",
+    "start": "export NODE_ENV=production; node index.js",
+    "dev-start": "export NODE_ENV=development; nodemon index.js",
+    "test-start": "export NODE_ENV=test; nodemon index.js",
+    "test": "jest --detectOpenHandles",
+    "drop-and-start": "npm run rebuild-container; npm start",
+    "rebuild-container": "docker stop dev_auth; docker rm dev_auth; npm run mongo-container;"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "config": "^1.30.0",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.1.7",
+    "mongoose-unique-validator": "^2.0.1",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "frisby": "^2.0.16",
+    "jest": "^23.3.0"
+  }
+}

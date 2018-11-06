@@ -1,0 +1,5 @@
+{
+  "Database": {
+    "host": "mongodb://localhost:27017/test_auth"
+  }
+}
