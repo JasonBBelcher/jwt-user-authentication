@@ -6,7 +6,6 @@ const cors = require('cors');
 const errorHandler = require('./handlers/error');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-const testRoutes = require('./routes/test-routes');
 
 app.use(morgan('dev'));
 app.use(cors());
