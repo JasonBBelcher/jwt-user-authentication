@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/test', testRoutes);
+
 
 app.use(function(req, res, next) {
   let err = new Error('Not Found');
