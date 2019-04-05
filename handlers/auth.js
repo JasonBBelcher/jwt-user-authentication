@@ -9,7 +9,7 @@ exports.signin = function(req, res, next) {
     .exec()
     .then(user => {
       if (user === undefined || user === null) {
-        next({
+        return next({
           status: 404,
           message: 'No record found'
         });
@@ -18,13 +18,13 @@ exports.signin = function(req, res, next) {
       user.comparePassword(req.body.password).then(isMatch => {
         if (isMatch) {
           const token = user.generateAuthToken();
-          res.status(200).json({
+          return res.status(200).json({
             id,
             username,
             token
           });
         } else {
-          next({
+          return next({
             status: 400,
             message: 'Invalid Email/Password.'
           });
@@ -39,7 +39,7 @@ exports.signup = function(req, res, next) {
     .then(user => {
       let { id, username } = user;
       let token = user.generateAuthToken();
-      res.status(201).json({
+      return res.status(201).json({
         id,
         username,
         token
@@ -49,7 +49,7 @@ exports.signup = function(req, res, next) {
       if (err.code === 11000) {
         err.message = 'Sorry, that username and / or email is taken';
       }
-      next({
+      return next({
         status: 400,
         message: err.message
       });
